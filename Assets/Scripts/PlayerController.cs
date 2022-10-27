@@ -24,10 +24,23 @@ public class PlayerController : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
+    private void Update()
+    {
+        if (GroundCheck() && Input.GetButtonDown("Crouch"))
+        {
+            anim.SetBool("isDucking", true);
+        }
+        else if (Input.GetButtonUp("Crouch"))
+        {
+            anim.SetBool("isDucking", false);
+        }
+    }
+
     // Physics
     private void FixedUpdate()
     {
         float horiz = Input.GetAxis("Horizontal");
+        float vert = Input.GetAxis("Vertical");
         isGrounded = GroundCheck();
 
         if (isGrounded && Input.GetAxis("Jump") > 0)
