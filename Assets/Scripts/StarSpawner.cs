@@ -5,8 +5,7 @@ using UnityEngine;
 public class StarSpawner : MonoBehaviour
 {
     [SerializeField] private float pushForce = 500.0f;
-
-    public GameObject star;
+    [SerializeField] private float stayTime = 5f;
 
     private Rigidbody2D rBody;
 
@@ -15,7 +14,7 @@ public class StarSpawner : MonoBehaviour
     {
         rBody = GetComponent<Rigidbody2D>();
         rBody.AddForce(new Vector2(Random.Range(-100, 100), pushForce));
-        Destroy(this.gameObject, 5);
+        Destroy(this.gameObject, stayTime);
     }
 
     public Rigidbody2D GetRigidbody2D()
