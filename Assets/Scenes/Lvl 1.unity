@@ -9265,7 +9265,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae19748fbc3b7e445b7ea784dd59a205, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pushForce: 500
+  waitTime: 0.12
   star: {fileID: 3939433745420413151, guid: 510831a453d0c61488148e064daada82, type: 3}
 --- !u!4 &1820237327 stripped
 Transform:

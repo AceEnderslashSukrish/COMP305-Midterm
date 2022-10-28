@@ -4,21 +4,16 @@ using UnityEngine;
 
 public class ChestInteract : MonoBehaviour
 {
-    [SerializeField] private float pushForce = 500.0f;
-
-    private bool triggerActive = false;
-
-    private bool instantiateActive = true;
+    [SerializeField] private float waitTime = 2f;
 
     public GameObject star;
 
-    private Rigidbody2D rBodyStar;
+    private bool triggerActive = false;
     private Animator anim;
 
     private void Start()
     {
         anim = GetComponent<Animator>();
-        rBodyStar = star.GetComponent<Rigidbody2D>();
     }
 
     public void OnTriggerEnter2D(Collider2D other)
@@ -43,15 +38,17 @@ public class ChestInteract : MonoBehaviour
         if (triggerActive && Input.GetKeyDown(KeyCode.E))
         {
             anim.SetBool("isPressed", true);
-            int numOfStars = 0;
-            Instantiate(star, transform.position, transform.rotation);
-            numOfStars++;
+            StartCoroutine(StarSpawn());
             //need to add rigidbody for star prefab and collision detection
-            if (numOfStars > 20)
-            {
-                Destroy(star);
-                numOfStars--;
-            }
+        }
+    }
+
+    IEnumerator StarSpawn()
+    {
+        while (true)
+        {
+            Instantiate(star, transform.position, transform.rotation);
+            yield return new WaitForSeconds(waitTime);
         }
     }
 }
